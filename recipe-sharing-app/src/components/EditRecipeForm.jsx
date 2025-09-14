@@ -1,14 +1,17 @@
 import { useState } from 'react';
-import { updateRecipe } from '../recipeStore';
+import { useRecipeStore } from '../recipeStore'; 
 
 function EditRecipeForm({ recipe, onUpdate }) {
   const [title, setTitle] = useState(recipe.title);
   const [description, setDescription] = useState(recipe.description);
 
+  
+  const updateRecipe = useRecipeStore((state) => state.updateRecipe);
+
   const handleSubmit = (event) => {
-    event.preventDefault(); // 🔥 required for passing the check
+    event.preventDefault(); 
     const updatedRecipe = { ...recipe, title, description };
-    updateRecipe(updatedRecipe);
+    updateRecipe(updatedRecipe); 
     if (onUpdate) onUpdate(updatedRecipe);
   };
 
@@ -31,4 +34,5 @@ function EditRecipeForm({ recipe, onUpdate }) {
 }
 
 export default EditRecipeForm;
+
 
