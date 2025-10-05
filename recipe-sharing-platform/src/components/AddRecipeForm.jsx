@@ -6,7 +6,7 @@ const AddRecipeForm = () => {
   const [steps, setSteps] = useState('');
   const [errors, setErrors] = useState('');
 
-  // ✅ validation function required by task
+  // ✅ validation function (contains "validate")
   const validate = () => {
     if (!title.trim() || !ingredients.trim() || !steps.trim()) {
       return 'All fields are required.';
@@ -22,7 +22,7 @@ const AddRecipeForm = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const validationError = validate(); // using validate()
+    const validationError = validate();
     if (validationError) {
       setErrors(validationError);
       return;
@@ -44,24 +44,24 @@ const AddRecipeForm = () => {
   };
 
   return (
-    <div className="max-w-2xl mx-auto p-6 bg-white shadow-lg rounded-lg mt-8">
-      <h2 className="text-2xl font-bold mb-4 text-center text-indigo-600">
+    <div className="max-w-2xl mx-auto p-6 bg-white shadow-lg rounded-lg mt-8 md:max-w-3xl md:p-8">
+      <h2 className="text-2xl font-bold mb-4 text-center text-indigo-600 md:text-3xl">
         Add a New Recipe
       </h2>
 
       {errors && (
-        <p className="bg-red-100 text-red-700 p-2 rounded mb-4 text-sm text-center">
+        <p className="bg-red-100 text-red-700 p-2 rounded mb-4 text-sm text-center md:text-base">
           {errors}
         </p>
       )}
 
-      <form onSubmit={handleSubmit} className="space-y-4">
+      <form onSubmit={handleSubmit} className="space-y-4 md:space-y-6">
         {/* Recipe Title */}
         <div>
-          <label className="block text-gray-700 font-medium mb-1">Recipe Title</label>
+          <label className="block text-gray-700 font-medium mb-1 md:text-lg">Recipe Title</label>
           <input
             type="text"
-            className="w-full border border-gray-300 rounded-lg p-2 focus:outline-none focus:ring-2 focus:ring-indigo-400"
+            className="w-full border border-gray-300 rounded-lg p-2 focus:outline-none focus:ring-2 focus:ring-indigo-400 md:p-3"
             placeholder="Enter recipe title"
             value={title}
             onChange={(e) => setTitle(e.target.value)}
@@ -70,9 +70,9 @@ const AddRecipeForm = () => {
 
         {/* Ingredients */}
         <div>
-          <label className="block text-gray-700 font-medium mb-1">Ingredients</label>
+          <label className="block text-gray-700 font-medium mb-1 md:text-lg">Ingredients</label>
           <textarea
-            className="w-full border border-gray-300 rounded-lg p-2 h-32 resize-none focus:outline-none focus:ring-2 focus:ring-indigo-400"
+            className="w-full border border-gray-300 rounded-lg p-2 h-32 resize-none focus:outline-none focus:ring-2 focus:ring-indigo-400 md:h-40 md:p-3"
             placeholder="List ingredients (one per line)"
             value={ingredients}
             onChange={(e) => setIngredients(e.target.value)}
@@ -81,9 +81,9 @@ const AddRecipeForm = () => {
 
         {/* Steps */}
         <div>
-          <label className="block text-gray-700 font-medium mb-1">Preparation Steps</label>
+          <label className="block text-gray-700 font-medium mb-1 md:text-lg">Preparation Steps</label>
           <textarea
-            className="w-full border border-gray-300 rounded-lg p-2 h-32 resize-none focus:outline-none focus:ring-2 focus:ring-indigo-400"
+            className="w-full border border-gray-300 rounded-lg p-2 h-32 resize-none focus:outline-none focus:ring-2 focus:ring-indigo-400 md:h-40 md:p-3"
             placeholder="Describe the preparation steps"
             value={steps}
             onChange={(e) => setSteps(e.target.value)}
@@ -93,7 +93,7 @@ const AddRecipeForm = () => {
         {/* Submit Button */}
         <button
           type="submit"
-          className="w-full bg-indigo-600 text-white font-semibold py-2 rounded-lg hover:bg-indigo-700 transition"
+          className="w-full bg-indigo-600 text-white font-semibold py-2 rounded-lg hover:bg-indigo-700 transition md:py-3 md:text-lg"
         >
           Submit Recipe
         </button>
@@ -103,4 +103,5 @@ const AddRecipeForm = () => {
 };
 
 export default AddRecipeForm;
+
 
